@@ -61,7 +61,7 @@ systemctl restart httpd.service
 yum install -y epel-release
 yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 yum-config-manager --enable remi-php72
-yum update
+yum -y update
 yum install -y php72 
 yum install -y php72-php-fpm php72-php-gd php72-php-json php72-php-mbstring php72-php-mysqlnd php72-php-xml php72-php-xmlrpc php72-php-opcache
 systemctl restart httpd.service
@@ -87,7 +87,7 @@ yum -y install git p7zip zip unzip gzip
 
 #Drupal Installation
 cd
-wget -c https://ftp.drupal.org/files/projects/drupal-8.2.6.tar.gz
+wget -c https://ftp.drupal.org/files/projects/drupal-8.5.6.tar.gz
 tar -zxvf drupal-8.5.6.tar.gz
 mv drupal-8.5.6 /var/www/html/drupal
 cd /var/www/html/drupal/sites/default/
