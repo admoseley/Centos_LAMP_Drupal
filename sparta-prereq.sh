@@ -7,10 +7,13 @@ SpartaUS Installation script for CentOS7
 
 Installs the base packages to run a standard SpartaUS isntall of Drupal/Apache
 /MySQL and PHP7
+Downloads Drupal Version 8.5.6 from: https://ftp.drupal.org/files/projects/drupal-8.5.6.tar.gz
 
 Author: Keelee Moseley
 Date: September 3, 2018
 
+Drupal Installation: (Originally written for 8.2.6, so update for 8.5.6)
+https://www.tecmint.com/install-drupal-in-centos-rhel-fedora/
 
 Composer Installation:
 https://getcomposer.org/download/
