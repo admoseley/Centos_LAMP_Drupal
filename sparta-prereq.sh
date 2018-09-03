@@ -41,6 +41,9 @@ opcache.revalidate_freq=60
 opcache.fast_shutdown=1
 opcache.enable_cli=1
 
+Clean URLS
+https://www.drupal.org/docs/8/clean-urls-in-drupal-8/fix-drupal-8-clean-urls-problems
+
 
 Author: Keelee Moseley
 Date: September 3, 2018
