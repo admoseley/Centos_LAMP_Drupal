@@ -7,17 +7,20 @@ SpartaUS Installation script for CentOS7
 
 Installs the base packages to run a standard SpartaUS isntall of Drupal/Apache
 /MySQL and PHP7
-Downloads Drupal Version 8.5.6 from: https://ftp.drupal.org/files/projects/drupal-8.5.6.tar.gz
+
 
 Author: Keelee Moseley
 Date: September 3, 2018
 
 Drupal Installation: (Originally written for 8.2.6, so update for 8.5.6)
+Downloads Drupal Version 8.5.6 from: https://ftp.drupal.org/files/projects/drupal-8.5.6.tar.gz
 https://www.tecmint.com/install-drupal-in-centos-rhel-fedora/
 
 Composer Installation:
 https://getcomposer.org/download/
 
+*working with Selinux
+https://www.centos.org/docs/5/html/5.2/Deployment_Guide/sec-sel-enable-disable-enforcement.html
 '
 
 #Install Apache2 (httpd)
@@ -69,10 +72,24 @@ chmod 755 phpinfo.php
 apachectl -M | sort
 
 #Install git and ziptools
-yum -y install git p7zip zip unzip
+yum -y install git p7zip zip unzip gzip
 
 #Drupal Installation
+wget -c https://ftp.drupal.org/files/projects/drupal-8.2.6.tar.gz
+tar -zxvf drupal-8.5.6.tar.gz
+mv drupal-8.5.6 /var/www/html/drupal
+cd /var/www/html/drupal/sites/default/
+cp default.settings.php settings.php
+chown -R apache:apache /var/www/html/drupal/
+chcon -R -t httpd_sys_content_rw_t /var/www/html/drupal/
+chcon -R -t httpd_sys_content_rw_t /var/www/html/drupal/sites/
 
+#create DB
+mysql -u root -p
+create database drupal;
+create user drupaladmin@localhost identified by 'K33s33Kyl3s';
+grant all on drupal.* to drupaladmin@localhost;
+ flush privileges;
 
 
 #Download and install Composer for dependency modules
