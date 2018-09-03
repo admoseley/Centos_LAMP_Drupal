@@ -7,7 +7,7 @@ sudo yum -y install wget
 2. download file
 wget --output-document=sparta-prereq.sh https://www.dropbox.com/s/vmt1u9tplkfes17/sparta-prereq.sh?dl=0
 3. set to executable
-chmod 755 
+chmod 755 sparta-prereq.sh
 
 
 
