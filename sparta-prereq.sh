@@ -30,6 +30,18 @@ https://getcomposer.org/download/
 *working with Selinux
 https://www.centos.org/docs/5/html/5.2/Deployment_Guide/sec-sel-enable-disable-enforcement.html
 
+*Adding opcache to server to address drupal caching
+http://php.net/manual/en/opcache.installation.php
+add edits to /etc/php.ini
+zend_extension=/opt/remi/php72/root/usr/lib64/php/modules/opcache.so
+opcache.memory_consumption=128
+opcache.interned_strings_buffer=8
+opcache.max_accelerated_files=4000
+opcache.revalidate_freq=60
+opcache.fast_shutdown=1
+opcache.enable_cli=1
+
+
 Author: Keelee Moseley
 Date: September 3, 2018
 '
@@ -100,7 +112,9 @@ yum -y update
 echo "$(tput setaf 1) $(tput setab 7)Install php7 $(tput sgr 0)"
 sleep 10
 yum install -y php72 
-yum install -y php72-php-fpm php72-php-gd php72-php-json php72-php-mbstring php72-php-mysqlnd php72-php-xml php72-php-xmlrpc php72-php-opcache
+yum install -y php72-php-fpm php72-php-gd php72-php-json php72-php-mbstring php72-php-mysqlnd php72-php-xml php72-php-xmlrpc php72-php-opcache php70-php-gd php-gd
+yum --enablerepo remi install -y php-xml
+
 
 echo "$(tput setaf 1) $(tput setab 7)Restart webservice... $(tput sgr 0)"
 sleep 10
@@ -114,7 +128,7 @@ chown apache:apache -R /var/www/html
 echo "$(tput setaf 1) $(tput setab 7)Set /var/www/html to 777 *This is temporary* $(tput sgr 0)"
 sleep 10
 #Temporary open html folder
-chmod 777 /var/www/html
+chmod -R 777 /var/www/html
 
 echo "$(tput setaf 1) $(tput setab 7)Create test php info file (phpinfo.php)$(tput sgr 0)"
 sleep 10
@@ -156,7 +170,7 @@ mysql -u root -p
 #create user drupaladmin@localhost identified by 'K33s33Kyl3s';
 #grant all on drupal.* to drupaladmin@localhost;
 #flush privileges;
-exit
+#exit
 
 #Download and install Composer for dependency modules
 #Start in user home directory to download
@@ -167,3 +181,5 @@ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 php composer-setup.php --install-dir=/bin --filename=composer
 php -r "unlink('composer-setup.php');"
+
+#Add Drush
