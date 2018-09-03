@@ -35,6 +35,7 @@ systemctl start mariadb
 mysql_secure_installation
 systemctl enable mariadb.service
 firewall-cmd --add-service=mysql
+setsebool -P httpd_can_network_connect_db 1
 
 #Install PHP and apache modules
 yum -y install php libapache2-mod-php php-mcrypt php-mysql php-fpm
