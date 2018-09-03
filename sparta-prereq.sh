@@ -168,7 +168,7 @@ chcon -R -t httpd_sys_content_rw_t /var/www/html/drupal/
 chcon -R -t httpd_sys_content_rw_t /var/www/html/drupal/sites/
 
 #create DB
-mysql -u root -p
+mysql -u root -p 'K33s33Kyl3s' -e "create database drupal; create user drupaladmin@localhost identified by 'K33s33Kyl3s'; grant all on drupal.* to drupaladmin@localhost; flush privileges; exit"
 #create database drupal;
 #create user drupaladmin@localhost identified by 'K33s33Kyl3s';
 #grant all on drupal.* to drupaladmin@localhost;
