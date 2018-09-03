@@ -47,7 +47,7 @@ systemctl status httpd
 systemctl stop httpd
 
 
-yum install mariadb-server mariadb
+yum install -y mariadb-server mariadb
 systemctl start mariadb
 mysql_secure_installation
 systemctl enable mariadb.service
