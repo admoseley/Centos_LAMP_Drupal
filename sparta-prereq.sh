@@ -17,13 +17,6 @@ https://getcomposer.org/download/
 
 '
 
-#firewalld is not installed (Installed on Minimal install)
-#sudo yum install firewalld
-#sudo systemctl start firewalld
-#sudo systemctl enable firewalld
-#sudo systemctl status firewalld
-
-
 #Install Apache2 (httpd)
 sudo yum -y clean all
 sudo yum -y update
