@@ -1,5 +1,5 @@
 #!/bin/bash
-':
+: '
 Installs the base packages to run a standard SpartaUS isntall of Drupal/Apache
 /MySQL and PHP7
 
@@ -137,7 +137,7 @@ echo "$(tput setaf 1) $(tput setab 7)Create test php info file (phpinfo.php)$(tp
 sleep 10
 #create test document
 echo -e "<?php\nphpinfo();\n?>"  > /var/www/html/phpinfo.php
-chmod 755 phpinfo.php
+chmod 755 /var/www/html/phpinfo.php
 
 #How to List Which Apache 2 Modules are Enabled on CentOS
 #https://www.liquidweb.com/kb/how-to-list-which-apache-2-modules-are-enabled-on-centos-7/
