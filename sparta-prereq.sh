@@ -164,7 +164,7 @@ chcon -R -t httpd_sys_content_rw_t /var/www/html/drupal/
 chcon -R -t httpd_sys_content_rw_t /var/www/html/drupal/sites/
 
 #create Maria/MySQL DB
-mysql -u root -p'K33s33Kyl3s' -e "create database drupal; create user drupaladmin@localhost identified by 'K33s33Kyl3s'; grant all on drupal.* to drupaladmin@localhost; flush privileges;"
+mysql -u root -p'P@ssw0rd123!' -e "create database drupal; create user drupaladmin@localhost identified by 'P@ssw0rd123!'; grant all on drupal.* to drupaladmin@localhost; flush privileges;"
 
 #Download and install Composer for dependency modules
 #Start in user home directory to download
@@ -189,4 +189,4 @@ composer require drush/drush
 #Move the docroot to /var/www/html/sparta
 #mv /home/kmoseley/sparta-portal/docroot /var/www/html/sparta
 #Create MySQL dbs and import the data
-#mysql -u root -p'K33s33Kyl3s' -e "create database sparta; create database ibdialog;use sparta;source /var/www/html/sparta/database/sparta.sql;use ibdialog;source /var/www/html/sparta/database/ibdialog.sql;"
+#mysql -u root -p'P@ssw0rd123!' -e "create database sparta; create database ibdialog;use sparta;source /var/www/html/sparta/database/sparta.sql;use ibdialog;source /var/www/html/sparta/database/ibdialog.sql;"
