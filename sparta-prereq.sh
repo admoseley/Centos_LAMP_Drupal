@@ -26,6 +26,7 @@ http://docs.drush.org/en/master/install/
 https://www.centos.org/docs/5/html/5.2/Deployment_Guide/sec-sel-enable-disable-enforcement.html
 
 *Adding opcache to server to address drupal caching
+Add this once the script is finished
 http://php.net/manual/en/opcache.installation.php
 add edits to /etc/php.ini
 zend_extension=/opt/remi/php72/root/usr/lib64/php/modules/opcache.so
@@ -179,3 +180,13 @@ php -r "unlink('composer-setup.php');"
 #http://docs.drush.org/en/master/install/
 cd /var/www/html/drupal
 composer require drush/drush
+
+
+#Sparta Install
+#Upload git clone to server home directory
+#unzip the files in the home dir
+#unzip sparta-portal.zip
+#Move the docroot to /var/www/html/sparta
+#mv /home/kmoseley/sparta-portal/docroot /var/www/html/sparta
+#Create MySQL dbs and import the data
+#mysql -u root -p'K33s33Kyl3s' -e "create database sparta; create database ibdialog;use sparta;source /var/www/html/sparta/database/sparta.sql;use ibdialog;source /var/www/html/sparta/database/ibdialog.sql;"
