@@ -19,6 +19,9 @@ https://www.tecmint.com/install-drupal-in-centos-rhel-fedora/
 Composer Installation:
 https://getcomposer.org/download/
 
+Drush Install
+http://docs.drush.org/en/master/install/
+
 *working with Selinux
 https://www.centos.org/docs/5/html/5.2/Deployment_Guide/sec-sel-enable-disable-enforcement.html
 
@@ -159,13 +162,8 @@ chown -R apache:apache /var/www/html/drupal/
 chcon -R -t httpd_sys_content_rw_t /var/www/html/drupal/
 chcon -R -t httpd_sys_content_rw_t /var/www/html/drupal/sites/
 
-#create DB
+#create Maria/MySQL DB
 mysql -u root -p'K33s33Kyl3s' -e "create database drupal; create user drupaladmin@localhost identified by 'K33s33Kyl3s'; grant all on drupal.* to drupaladmin@localhost; flush privileges;"
-#create database drupal;
-#create user drupaladmin@localhost identified by 'K33s33Kyl3s';
-#grant all on drupal.* to drupaladmin@localhost;
-#flush privileges;
-#exit
 
 #Download and install Composer for dependency modules
 #Start in user home directory to download
@@ -178,3 +176,6 @@ php composer-setup.php --install-dir=/bin --filename=composer
 php -r "unlink('composer-setup.php');"
 
 #Add Drush
+#http://docs.drush.org/en/master/install/
+cd /var/www/html/drupal
+composer require drush/drush
