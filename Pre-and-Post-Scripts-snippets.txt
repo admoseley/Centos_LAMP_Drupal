@@ -1,0 +1,21 @@
+** Start Script
+sudo yum -y install wget
+wget --output-document=sparta-prereq.sh https://www.dropbox.com/s/vmt1u9tplkfes17/sparta-prereq.sh?dl=0
+chmod 755 sparta-prereq.sh
+sudo ./sparta-prereq.sh
+
+
+#Apache Error Logs
+#sudo vi /var/log/httpd/error_log
+
+
+unzip sparta-portal.zip
+mv /home/kmoseley/sparta-portal/docroot /var/www/html/sparta
+sudo chown -R apache:apache sparta
+sudo chcon -R -t httpd_sys_content_rw_t /var/www/html/sparta
+mysql -u root -p'K33s33Kyl3s' -e "create database sparta; create database ibdialog;use sparta;source /var/www/html/sparta/database/sparta.sql;use ibdialog;source /var/www/html/sparta/database/ibdialog.sql;"
+GRANT ALL PRIVILEGES ON *.* TO 'spartadb'@'localhost' IDENTIFIED BY 'P@ssw0rd123!';
+sudo chmod 777 composer.json
+sudo mkdir /var/www/html/sparta/vendor
+sudo composer require drush/drush
+
