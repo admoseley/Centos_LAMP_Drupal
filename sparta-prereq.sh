@@ -65,7 +65,7 @@ sleep 10
 systemctl start httpd
 systemctl enable httpd
 systemctl status httpd
-systemctl stop httpd
+
 
 echo "$(tput setaf 1) $(tput setab 7)Install mariaDB$(tput sgr 0)"
 sleep 10
