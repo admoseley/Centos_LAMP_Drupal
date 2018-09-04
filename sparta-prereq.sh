@@ -6,19 +6,11 @@ Installs the base packages to run a standard SpartaUS isntall of Drupal/Apache
 SpartaUS Installation script for CentOS7
 #https://www.liquidweb.com/kb/how-to-install-apache-on-centos-7/
 
-#Getting Started
-1. install wget on Centos
+#Getting Started run the following to download and install the Preq script
 sudo yum -y install wget
-2. download file
 wget --output-document=sparta-prereq.sh https://www.dropbox.com/s/vmt1u9tplkfes17/sparta-prereq.sh?dl=0
-3. set to executable
 chmod 755 sparta-prereq.sh
-open in vi and make sure it is formatted for unix
-vi sparta-prereq.sh
-:set fileformat=unix
-:wq!
-Run this script as sudo.
-Example: sudo ./sparta-prereq.sh
+sudo ./sparta-prereq.sh
 
 Drupal Installation: (Originally written for 8.2.6, so update for 8.5.6)
 Downloads Drupal Version 8.5.6 from: https://ftp.drupal.org/files/projects/drupal-8.5.6.tar.gz
