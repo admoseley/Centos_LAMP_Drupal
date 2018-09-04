@@ -111,7 +111,7 @@ yum -y update
 echo "$(tput setaf 1) $(tput setab 7)Install php7 $(tput sgr 0)"
 sleep 10
 yum install -y php72 
-yum install -y php72-php-fpm php72-php-gd php72-php-json php72-php-mbstring php72-php-mysqlnd php72-php-xml php72-php-xmlrpc php72-php-opcache php70-php-gd php-gd
+yum install -y php72-php-fpm php72-php-gd php72-php-json php72-php-mbstring php72-php-mysqlnd php72-php-xml php72-php-xmlrpc php72-php-opcache php70-php-gd php-gd php-mbstring
 yum --enablerepo remi install -y php-xml
 
 
