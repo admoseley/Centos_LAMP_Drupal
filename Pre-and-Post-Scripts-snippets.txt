@@ -1,8 +1,8 @@
 ** Start Script
-sudo yum -y install wget
+yum -y install wget
 wget --output-document=sparta-prereq.sh https://www.dropbox.com/s/vmt1u9tplkfes17/sparta-prereq.sh?dl=0
 chmod 755 sparta-prereq.sh
-sudo ./sparta-prereq.sh
+./sparta-prereq.sh
 
 
 #Apache Error Logs
