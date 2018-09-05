@@ -54,6 +54,7 @@ echo "$(tput setaf 1) $(tput setab 7)Run yum clean all...$(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------$(tput sgr 0)"
 sleep 10
 yum -y clean all
+rm -rf /var/cache/yum
 
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------$(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Run yum update...$(tput sgr 0)"
@@ -234,6 +235,9 @@ composer require drush/drush
 
 cd /home/kmoseley
 git clone https://github.com/admoseley/Centos_LAMP_Drupal.git
+mv
+
+
 
 #Sparta Install
 #Upload git clone to server home directory
