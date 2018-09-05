@@ -232,6 +232,8 @@ echo "$(tput setaf 1) $(tput setab 7)-------------------------------------------
 cd /var/www/html/drupal
 composer require drush/drush
 
+cd /home/kmoseley
+git clone https://github.com/admoseley/Centos_LAMP_Drupal.git
 
 #Sparta Install
 #Upload git clone to server home directory
