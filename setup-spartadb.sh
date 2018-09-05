@@ -11,4 +11,10 @@ cd /var/www/html/sparta
 sudo chmod 777 ./composer.json
 sudo mkdir /var/www/html/sparta/vendor
 sudo composer require drush/drush
-mv /var/www/html/sparta/sites/default/settings.php /var/www/html/sparta/sites/default/settings.php.old
+cp /var/www/html/sparta/sites/default/settings.php /var/www/html/sparta/sites/default/settings.php.old
+cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.old
+cp /home/kmoseley/Centos_LAMP_Drupal/httpd.conf /etc/httpd/conf/httpd.conf
+cp /etc/php.ini /etc/php.old
+cp /home/kmoseley/Centos_LAMP_Drupal/php.ini /etc/php.ini
+cp /etc/php.ini /etc/php.old
+cp /home/kmoseley/Centos_LAMP_Drupal/php.ini /etc/php.ini
