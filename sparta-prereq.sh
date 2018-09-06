@@ -52,26 +52,26 @@ echo "$(tput setaf 1) $(tput setab 7)-------------------------------------------
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Run yum clean all...                                   $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 yum -y clean all
 rm -rf /var/cache/yum
 
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Run yum update...                                      $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 yum -y update
 
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Install apache (httpd) and yum-utils                   $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 yum -y install httpd yum-utils
 
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Update FW for port 80 and 443                          $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 firewall-cmd --permanent --add-port=80/tcp
 firewall-cmd --permanent --add-port=443/tcp
 firewall-cmd --reload
@@ -79,7 +79,7 @@ firewall-cmd --reload
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Run start webservices...                               $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 systemctl start httpd
 systemctl enable httpd
 systemctl status httpd
@@ -87,49 +87,49 @@ systemctl status httpd
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Install mariaDB                                        $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 yum install -y mariadb-server mariadb
 systemctl start mariadb
 
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Secure mariaDB                                         $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 mysql_secure_installation
 
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Start mariaDB                                          $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 systemctl enable mariadb.service
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)All FW allow for mariaDB                               $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 firewall-cmd --add-service=mysql
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Set SELINUX allow HTTPD to MARIADB                     $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 setsebool -P httpd_can_network_connect_db 1
 
 #Install PHP and apache modules
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Install php modules...                                 $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 yum -y install php libapache2-mod-php php-mcrypt php-mysql php-fpm
 
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Restart webservice...                                  $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 systemctl restart httpd.service
 
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Add php7 repos                                         $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 yum install -y epel-release
 yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 yum-config-manager --enable remi-php72
@@ -138,7 +138,7 @@ yum -y update
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Install php7                                           $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 yum install -y php72 
 yum install -y php72-php-fpm php72-php-gd php72-php-json php72-php-mbstring php72-php-mysqlnd php72-php-xml php72-php-xmlrpc php72-php-opcache php70-php-gd php-gd php-mbstring
 yum --enablerepo remi install -y php-xml
@@ -146,51 +146,51 @@ yum --enablerepo remi install -y php-xml
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Restart webservice...                                  $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 systemctl restart httpd.service
 
 #create PHP test file
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Change ownership of /var/www/html to apache:apache     $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 chown apache:apache -R /var/www/html
 
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)Set /var/www/html to 777 *This is temporary*           $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)Set /var/www/html to 777 *This is temporary*           $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#sleep 5
 #Temporary open html folder
-chmod -R 777 /var/www/html
+#chmod -R 777 /var/www/html
 
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Create test php info file (phpinfo.php)                $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 #create test document
 echo -e "<?php\nphpinfo();\n?>"  > /var/www/html/phpinfo.php
 chmod 755 /var/www/html/phpinfo.php
 
 #How to List Which Apache 2 Modules are Enabled on CentOS
 #https://www.liquidweb.com/kb/how-to-list-which-apache-2-modules-are-enabled-on-centos-7/
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)View apache modules                                    $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
-apachectl -M | sort
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)View apache modules                                    $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#sleep 5
+#apachectl -M | sort
 
 #Install git and ziptools
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Install git and zip tools...                           $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 yum -y install git p7zip zip unzip gzip
 
 #Drupal Installation
 #echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 #echo "$(tput setaf 1) $(tput setab 7)Download Drupal 8.5.6...                               $(tput sgr 0)"
 #echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-#sleep 10
+#sleep 5
 #cd
 #wget -c https://ftp.drupal.org/files/projects/drupal-8.5.6.tar.gz
 #tar -zxvf drupal-8.5.6.tar.gz
@@ -198,7 +198,7 @@ yum -y install git p7zip zip unzip gzip
 #echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 #echo "$(tput setaf 1) $(tput setab 7)copy drupal to /var/www/html/drupal...                 $(tput sgr 0)"
 #echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-#sleep 10
+#sleep 5
 #mv drupal-8.5.6 /var/www/html/drupal
 #cd /var/www/html/drupal/sites/default/
 #cp default.settings.php settings.php
@@ -206,7 +206,7 @@ yum -y install git p7zip zip unzip gzip
 #chcon -R -t httpd_sys_content_rw_t /var/www/html/drupal/
 #chcon -R -t httpd_sys_content_rw_t /var/www/html/drupal/sites/
 
-#create Maria/MySQL DB
+#create Maria/MySQL DB for Drupal 8.5.6
 #echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 #echo "$(tput setaf 1) $(tput setab 7)Create MySQL Databases for Drupal Test                 $(tput sgr 0)"
 #echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
@@ -217,7 +217,7 @@ yum -y install git p7zip zip unzip gzip
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Install Composer...                                    $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 cd ~
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
@@ -241,13 +241,13 @@ git clone https://github.com/admoseley/Centos_LAMP_Drupal.git
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7) Unzipping Sparta-portal.zip from Git Repos            $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 unzip ./sparta-portal.zip
 
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7) moving Sparta-portal to web dir /var/www/html         $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 mv /home/kmoseley/sparta-portal/docroot /var/www/html/sparta
 cd /var/www/html
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
@@ -268,7 +268,7 @@ sudo mkdir /var/www/html/sparta/vendor
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7) Run composer to get dependency modules                $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
+sleep 5
 sudo composer require drush/drush
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7) Rename settings.php file to  *.old                    $(tput sgr 0)"
@@ -278,13 +278,13 @@ mv /var/www/html/sparta/sites/default/settings.php /var/www/html/sparta/sites/de
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7) Copy new httpd.conf file (save old to httpd.old)      $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.old
+mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.old
 chmod 644 /home/kmoseley/Centos_LAMP_Drupal/httpd.conf
 cp /home/kmoseley/Centos_LAMP_Drupal/httpd.conf /etc/httpd/conf/httpd.conf
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7) Copy new php.ini file (save old to /etc/php.old)      $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-cp /etc/php.ini /etc/php.old
+mv /etc/php.ini /etc/php.old
 chmod 644 /home/kmoseley/Centos_LAMP_Drupal/php.ini
 cp /home/kmoseley/Centos_LAMP_Drupal/php.ini /etc/php.ini
 systemctl restart httpd
