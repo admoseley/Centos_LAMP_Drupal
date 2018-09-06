@@ -287,7 +287,7 @@ echo "$(tput setaf 1) $(tput setab 7)-------------------------------------------
 cp /etc/php.ini /etc/php.old
 chmod 644 /home/kmoseley/Centos_LAMP_Drupal/php.ini
 cp /home/kmoseley/Centos_LAMP_Drupal/php.ini /etc/php.ini
-sudo systemctl restart httpd
+systemctl restart httpd
 systemctl status httpd
 
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
