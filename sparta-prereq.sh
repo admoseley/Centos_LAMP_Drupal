@@ -273,7 +273,7 @@ sudo composer require drush/drush
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7) Rename settings.php file to  *.old                    $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-cp /var/www/html/sparta/sites/default/settings.php /var/www/html/sparta/sites/default/settings.php.old
+mv /var/www/html/sparta/sites/default/settings.php /var/www/html/sparta/sites/default/settings.php.old
 #-rw-r--r--. 1 root root 11753 Jun 26 14:07 httpd.conf
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7) Copy new httpd.conf file (save old to httpd.old)      $(tput sgr 0)"
@@ -287,3 +287,5 @@ echo "$(tput setaf 1) $(tput setab 7)-------------------------------------------
 cp /etc/php.ini /etc/php.old
 chmod 644 /home/kmoseley/Centos_LAMP_Drupal/php.ini
 cp /home/kmoseley/Centos_LAMP_Drupal/php.ini /etc/php.ini
+sudo systemctl restart httpd
+systemctl status httpd
