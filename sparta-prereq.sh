@@ -237,7 +237,6 @@ echo "$(tput setaf 1) $(tput setab 7)-------------------------------------------
 echo "$(tput setaf 1) $(tput setab 7) Git Clone Sparta Install tools                        $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 git clone https://github.com/admoseley/Centos_LAMP_Drupal.git
-cd /home/kmoseley/Centos_LAMP_Drupal
 
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7) Unzipping Sparta-portal.zip from Git Repos            $(tput sgr 0)"
