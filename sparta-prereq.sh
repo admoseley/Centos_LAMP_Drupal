@@ -289,3 +289,7 @@ chmod 644 /home/kmoseley/Centos_LAMP_Drupal/php.ini
 cp /home/kmoseley/Centos_LAMP_Drupal/php.ini /etc/php.ini
 sudo systemctl restart httpd
 systemctl status httpd
+
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7) Install Complete access http://192.168.2.122/sparta   $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
