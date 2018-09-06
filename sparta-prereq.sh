@@ -187,31 +187,30 @@ sleep 10
 yum -y install git p7zip zip unzip gzip
 
 #Drupal Installation
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)Download Drupal 8.5.6...                               $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#sleep 10
+#cd
+#wget -c https://ftp.drupal.org/files/projects/drupal-8.5.6.tar.gz
+#tar -zxvf drupal-8.5.6.tar.gz
 
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)Download Drupal 8.5.6...                               $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
-cd
-wget -c https://ftp.drupal.org/files/projects/drupal-8.5.6.tar.gz
-tar -zxvf drupal-8.5.6.tar.gz
-
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)copy drupal to /var/www/html/drupal...                 $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 10
-mv drupal-8.5.6 /var/www/html/drupal
-cd /var/www/html/drupal/sites/default/
-cp default.settings.php settings.php
-chown -R apache:apache /var/www/html/drupal/
-chcon -R -t httpd_sys_content_rw_t /var/www/html/drupal/
-chcon -R -t httpd_sys_content_rw_t /var/www/html/drupal/sites/
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)copy drupal to /var/www/html/drupal...                 $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#sleep 10
+#mv drupal-8.5.6 /var/www/html/drupal
+#cd /var/www/html/drupal/sites/default/
+#cp default.settings.php settings.php
+#chown -R apache:apache /var/www/html/drupal/
+#chcon -R -t httpd_sys_content_rw_t /var/www/html/drupal/
+#chcon -R -t httpd_sys_content_rw_t /var/www/html/drupal/sites/
 
 #create Maria/MySQL DB
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)Create MySQL Databases...                              $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-mysql -u root -p'P@ssw0rd123!' -e "create database drupal; create user drupaladmin@localhost identified by 'P@ssw0rd123!'; grant all on drupal.* to drupaladmin@localhost; flush privileges;"
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)Create MySQL Databases for Drupal Test                 $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#mysql -u root -p'P@ssw0rd123' -e "create database drupal; create user drupaladmin@localhost identified by 'P@ssw0rd123!'; grant all on drupal.* to drupaladmin@localhost; flush privileges;"
 
 #Download and install Composer for dependency modules
 #Start in user home directory to download
@@ -227,23 +226,65 @@ php -r "unlink('composer-setup.php');"
 
 #Add Drush
 #http://docs.drush.org/en/master/install/
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)Install composer/drush in /var/www/html/drupal         $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-cd /var/www/html/drupal
-composer require drush/drush
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)Install composer/drush in /var/www/html/drupal         $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#cd /var/www/html/drupal
+#composer require drush/drush
 
 cd /home/kmoseley
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7) Git Clone Sparta Install tools                        $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 git clone https://github.com/admoseley/Centos_LAMP_Drupal.git
-mv
+cd /home/kmoseley/Centos_LAMP_Drupal
 
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7) Unzipping Sparta-portal.zip from Git Repos            $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+sleep 10
+unzip ./sparta-portal.zip
 
-
-#Sparta Install
-#Upload git clone to server home directory
-#unzip the files in the home dir
-#unzip sparta-portal.zip
-#Move the docroot to /var/www/html/sparta
-#mv /home/kmoseley/sparta-portal/docroot /var/www/html/sparta
-#Create MySQL dbs and import the data
-#mysql -u root -p'P@ssw0rd123!' -e "create database sparta; create database ibdialog;use sparta;source /var/www/html/sparta/database/sparta.sql;use ibdialog;source /var/www/html/sparta/database/ibdialog.sql;"
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7) moving Sparta-portal to web dir /var/www/html         $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+sleep 10
+mv /home/kmoseley/sparta-portal/docroot /var/www/html/sparta
+cd /var/www/html
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7) set ownership web dir /var/www/html/sparta            $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+sudo chown -R apache:apache ./sparta
+sudo chcon -R -t httpd_sys_content_rw_t /var/www/html/sparta
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7) Create sparta database                                $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+mysql -u root -p'P@ssw0rd123' -e "create database sparta; create database ibdialog;use sparta;source /var/www/html/sparta/database/sparta.sql;use ibdialog;source /var/www/html/sparta/database/ibdialog.sql;GRANT ALL PRIVILEGES ON *.* TO 'spartadb'@'localhost' IDENTIFIED BY 'P@ssw0rd123';"
+cd /var/www/html/sparta
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7) Make composer.json writeable                          $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+sudo chmod 777 ./composer.json
+sudo mkdir /var/www/html/sparta/vendor
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7) Run composer to get dependency modules                $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+sleep 10
+sudo composer require drush/drush
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7) Rename settings.php file to  *.old                    $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+cp /var/www/html/sparta/sites/default/settings.php /var/www/html/sparta/sites/default/settings.php.old
+#-rw-r--r--. 1 root root 11753 Jun 26 14:07 httpd.conf
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7) Copy new httpd.conf file (save old to httpd.old)      $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.old
+chmod 644 /home/kmoseley/Centos_LAMP_Drupal/httpd.conf
+cp /home/kmoseley/Centos_LAMP_Drupal/httpd.conf /etc/httpd/conf/httpd.conf
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7) Copy new php.ini file (save old to /etc/php.old)      $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+cp /etc/php.ini /etc/php.old
+chmod 644 /home/kmoseley/Centos_LAMP_Drupal/php.ini
+cp /home/kmoseley/Centos_LAMP_Drupal/php.ini /etc/php.ini
