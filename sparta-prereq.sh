@@ -139,7 +139,7 @@ echo "$(tput setaf 1) $(tput setab 7)-------------------------------------------
 echo "$(tput setaf 1) $(tput setab 7)Install php7                                           $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 sleep 5
-yum install -y php72 
+yum install -y php72
 yum install -y php72-php-fpm php72-php-gd php72-php-json php72-php-mbstring php72-php-mysqlnd php72-php-xml php72-php-xmlrpc php72-php-opcache php70-php-gd php-gd php-mbstring
 yum --enablerepo remi install -y php-xml
 
@@ -232,7 +232,7 @@ php -r "unlink('composer-setup.php');"
 #cd /var/www/html/drupal
 #composer require drush/drush
 
-cd /home/kmoseley
+cd /home/merck-admin
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7) Git Clone Sparta Install tools                        $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
@@ -248,7 +248,7 @@ echo "$(tput setaf 1) $(tput setab 7)-------------------------------------------
 echo "$(tput setaf 1) $(tput setab 7) moving Sparta-portal to web dir /var/www/html         $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 sleep 5
-mv /home/kmoseley/sparta-portal/docroot /var/www/html/sparta
+mv /home/merck-admin/sparta-portal/docroot /var/www/html/sparta
 cd /var/www/html
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7) set ownership web dir /var/www/html/sparta            $(tput sgr 0)"
@@ -279,14 +279,14 @@ echo "$(tput setaf 1) $(tput setab 7)-------------------------------------------
 echo "$(tput setaf 1) $(tput setab 7) Copy new httpd.conf file (save old to httpd.old)      $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 mv /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.old
-chmod 644 /home/kmoseley/Centos_LAMP_Drupal/httpd.conf
-cp /home/kmoseley/Centos_LAMP_Drupal/httpd.conf /etc/httpd/conf/httpd.conf
+chmod 644 /home/merck-admin/Centos_LAMP_Drupal/httpd.conf
+cp /home/merck-admin/Centos_LAMP_Drupal/httpd.conf /etc/httpd/conf/httpd.conf
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7) Copy new php.ini file (save old to /etc/php.old)      $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 mv /etc/php.ini /etc/php.old
-chmod 644 /home/kmoseley/Centos_LAMP_Drupal/php.ini
-cp /home/kmoseley/Centos_LAMP_Drupal/php.ini /etc/php.ini
+chmod 644 /home/merck-admin/Centos_LAMP_Drupal/php.ini
+cp /home/merck-admin/Centos_LAMP_Drupal/php.ini /etc/php.ini
 systemctl restart httpd
 systemctl status httpd
 

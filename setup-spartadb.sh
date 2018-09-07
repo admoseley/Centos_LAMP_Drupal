@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /home/kmoseley
+cd /home/merck-admin
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7) Unzipping Sparta-portal.zip from Git Repos            $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
@@ -10,7 +10,7 @@ echo "$(tput setaf 1) $(tput setab 7)-------------------------------------------
 echo "$(tput setaf 1) $(tput setab 7) moving Sparta-portal to web dir /var/www/html         $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 sleep 10
-mv /home/kmoseley/sparta-portal/docroot /var/www/html/sparta
+mv /home/merck-admin/sparta-portal/docroot /var/www/html/sparta
 cd /var/www/html
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7) set ownership web dir /var/www/html/sparta            $(tput sgr 0)"
@@ -41,14 +41,14 @@ echo "$(tput setaf 1) $(tput setab 7)-------------------------------------------
 echo "$(tput setaf 1) $(tput setab 7) Copy new httpd.conf file (save old to httpd.old)      $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.old
-chmod 644 /home/kmoseley/Centos_LAMP_Drupal/httpd.conf
-cp /home/kmoseley/Centos_LAMP_Drupal/httpd.conf /etc/httpd/conf/httpd.conf
+chmod 644 /home/merck-admin/Centos_LAMP_Drupal/httpd.conf
+cp /home/merck-admin/Centos_LAMP_Drupal/httpd.conf /etc/httpd/conf/httpd.conf
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7) Copy new php.ini file (save old to /etc/php.old)      $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 cp /etc/php.ini /etc/php.old
-chmod 644 /home/kmoseley/Centos_LAMP_Drupal/php.ini
-cp /home/kmoseley/Centos_LAMP_Drupal/php.ini /etc/php.ini
+chmod 644 /home/merck-admin/Centos_LAMP_Drupal/php.ini
+cp /home/merck-admin/Centos_LAMP_Drupal/php.ini /etc/php.ini
 sudo systemctl restart httpd
 systemctl status httpd
 
