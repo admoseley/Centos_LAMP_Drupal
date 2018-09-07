@@ -7,8 +7,6 @@ SpartaUS Installation script for CentOS7
 #https://www.liquidweb.com/kb/how-to-install-apache-on-centos-7/
 
 #Getting Started run the following to download and install the Preq script
-sudo yum -y install wget
-wget --output-document=sparta-prereq.sh https://www.dropbox.com/s/vmt1u9tplkfes17/sparta-prereq.sh?dl=0
 chmod 755 sparta-prereq.sh
 sudo ./sparta-prereq.sh
 
@@ -28,7 +26,8 @@ https://www.centos.org/docs/5/html/5.2/Deployment_Guide/sec-sel-enable-disable-e
 *Adding opcache to server to address drupal caching
 Add this once the script is finished
 http://php.net/manual/en/opcache.installation.php
-add edits to /etc/php.ini
+edit /etc/php.ini
+Add the following:
 zend_extension=/opt/remi/php72/root/usr/lib64/php/modules/opcache.so
 opcache.memory_consumption=128
 opcache.interned_strings_buffer=8
@@ -84,29 +83,29 @@ systemctl start httpd
 systemctl enable httpd
 systemctl status httpd
 
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)Install mariaDB                                        $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 5
-yum install -y mariadb-server mariadb
-systemctl start mariadb
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)Install mariaDB                                        $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#sleep 5
+#yum install -y mariadb-server mariadb
+#systemctl start mariadb
 
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)Secure mariaDB                                         $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 5
-mysql_secure_installation
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)Secure mariaDB                                         $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#sleep 5
+#mysql_secure_installation
 
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)Start mariaDB                                          $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 5
-systemctl enable mariadb.service
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)All FW allow for mariaDB                               $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-sleep 5
-firewall-cmd --add-service=mysql
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)Start mariaDB                                          $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#sleep 5
+#systemctl enable mariadb.service
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)All FW allow for mariaDB                               $(tput sgr 0)"
+#echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
+#sleep 5
+#firewall-cmd --add-service=mysql
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)Set SELINUX allow HTTPD to MARIADB                     $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
@@ -258,7 +257,7 @@ sudo chcon -R -t httpd_sys_content_rw_t /var/www/html/sparta
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7) Create sparta database                                $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-mysql -u root -p'P@ssw0rd123' -e "create database sparta; create database ibdialog;use sparta;source /var/www/html/sparta/database/sparta.sql;use ibdialog;source /var/www/html/sparta/database/ibdialog.sql;GRANT ALL PRIVILEGES ON *.* TO 'spartadb'@'localhost' IDENTIFIED BY 'P@ssw0rd123';"
+mysql spartadevdb.cpes6hi5e6a.us-east-2.rds.amazonaws.com -u merck_admin -p'scrlphAmusl4Was4ew9OpiFROP' -e "create database sparta; create database ibdialog;use sparta;source /var/www/html/sparta/database/sparta.sql;use ibdialog;source /var/www/html/sparta/database/ibdialog.sql;GRANT ALL PRIVILEGES ON *.* TO 'spartadb'@'localhost' IDENTIFIED BY 'P@ssw0rd123';"
 cd /var/www/html/sparta
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7) Make composer.json writeable                          $(tput sgr 0)"
@@ -291,5 +290,5 @@ systemctl restart httpd
 systemctl status httpd
 
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
-echo "$(tput setaf 1) $(tput setab 7) Install Complete access http://192.168.2.122/sparta   $(tput sgr 0)"
+echo "$(tput setaf 1) $(tput setab 7) Install Complete access http://10.133.232.106/sparta   $(tput sgr 0)"
 echo "$(tput setaf 1) $(tput setab 7)------------------------------------------------------ $(tput sgr 0)"
